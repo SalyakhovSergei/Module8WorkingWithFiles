@@ -7,7 +7,7 @@ namespace Module8Files
     {
         static void Main(string[] args)
         {
-            DeleteFiles("C:/Users/Анатолий/Desktop/testFolder");
+            DeleteFiles("C:/Users/admin/Desktop/1212");
 
             static void DeleteFiles(string folder)
             {
@@ -19,7 +19,11 @@ namespace Module8Files
                 {
                     foreach (FileInfo file in FI)
                     {
-                        file.Delete();
+                        TimeSpan fileTime = DateTime.Now - file.CreationTime;
+                        if (fileTime.Minutes > 30)
+                        {
+                            file.Delete();
+                        }
                     }
                     foreach (DirectoryInfo DI in directories)
                     {
