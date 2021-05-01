@@ -17,18 +17,27 @@ namespace Module8Files
 
             if (dirInfo.Exists)
             {
-                foreach (FileInfo file in FI)
+                try
                 {
-                    TimeSpan fileTime = DateTime.Now - file.CreationTime;
-                    if (fileTime.Minutes > 30)
+                    foreach (FileInfo file in FI)
                     {
-                        file.Delete();
+                        TimeSpan fileTime = DateTime.Now - file.CreationTime;
+                        if (fileTime.Minutes > 30)
+                        {
+                            file.Delete();
+                        }
                     }
+                    foreach (DirectoryInfo DI in directories)
+                    {
+                        DeleteFiles(DI.FullName);
+                    }
+
                 }
-                foreach (DirectoryInfo DI in directories)
+                catch(IOException e)
                 {
-                    DeleteFiles(DI.FullName);
+                    Console.WriteLine(e.Message);
                 }
+                
             }
         }
     }

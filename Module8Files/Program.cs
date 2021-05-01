@@ -10,8 +10,6 @@ namespace Module8Files
             FileDelete test = new FileDelete();
 
             test.DeleteFiles("C:/Users/admin/Desktop/1212");
-
-            
         }
     }
 }
